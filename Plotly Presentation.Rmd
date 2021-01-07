@@ -1,0 +1,33 @@
+---
+title: "Plotly Presentation"
+author: "P.Y.Fong"
+date: "`r format(Sys.Date(),'%d %B %Y')`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+library (knitr)
+opts_chunk$set(cache.lazy= T,
+               echo = T,
+               message=F,
+               warning=F,
+               comment="")
+```
+##      1.0 Executive Summary
+1.      A simple demonstration of a R Markdown presentation with plotly.  
+2.      Data set - diamonds.  
+3.      plotly with labels on hover.
+
+##     3.0 The Code
+```{r Code}
+library(plotly)
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+fig <- plot_ly(d, x = ~carat, y = ~price,
+        text = ~paste("Price: ", price, '$<br>Cut:', cut),  # Hover text:
+        color = ~carat, size = ~carat)
+```
+
+##     3.0 The Plot
+```{r Plot, fig.cap= format(Sys.Date(),'%d %B %Y')}
+fig
+```
